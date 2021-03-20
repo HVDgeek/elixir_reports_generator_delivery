@@ -1,0 +1,22 @@
+|> File.read()
+|> handle_file()
+
+case File.read("reports/#{filename}") do
+  {:ok, result} -> result
+  {:error, reason} -> reason
+   _ -> "Catch all"
+end
+
+################################################
+
+defp handle_file({:ok, file_content}), do: file_content
+defp handle_file({:error, _reason}), do: "Error while open file"
+
+############################
+ defp sum_values([id, food_name, price], %{"users" => users, "foods" => foods} = report) do
+
+ ##################################
+report
+ |> Map.put("users", users)
+ |> Map.put("foods", foods)
+ %{report | "users" => users, "foods" => foods}
